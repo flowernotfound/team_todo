@@ -1,0 +1,44 @@
+erDiagram
+
+  USERS {
+    bigint id PK
+    string name
+    string email
+    string password_digest
+    datetime created_at
+    datetime updated_at
+  }
+
+  TEAMS {
+    bigint id PK
+    string name
+    bigint owner_id FK
+    datetime created_at
+    datetime updated_at
+  }
+
+  TASKS {
+    bigint id PK
+    string title
+    text body
+    integer status
+    bigint team_id FK
+    bigint assignee_id FK
+    datetime created_at
+    datetime updated_at
+  }
+
+  MEMBERS {
+    bigint id PK
+    bigint team_id FK
+    bigint user_id FK
+    integer role
+    datetime created_at
+    datetime updated_at
+  }
+
+  USERS ||--o{ TEAMS : owns
+  USERS ||--o{ TASKS : assigned_to
+  USERS ||--o{ MEMBERS : participates
+  TEAMS ||--o{ TASKS : has
+  TEAMS ||--o{ MEMBERS : has
