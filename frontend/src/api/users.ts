@@ -24,7 +24,7 @@ export const getUser = async (id: number): Promise<User> => {
 
 // rails側で受け取る際にuserでラップしているため合わせている
 export const createUser = async (
-  userData: Omit<User, 'id' | 'created_at' | 'updated_at'>
+  userData: Omit<User, 'id' | 'created_at' | 'updated_at'>,
 ): Promise<User> => {
   const response = await axios.post<User>(`${API_BASE_URL}/users`, {
     user: userData,
@@ -32,8 +32,10 @@ export const createUser = async (
   return response.data;
 };
 
-
-export const updateUser = async (id: number, userData: Omit<User, 'id' | 'created_at' | 'updated_at'>): Promise<User> => {
+export const updateUser = async (
+  id: number,
+  userData: Omit<User, 'id' | 'created_at' | 'updated_at'>,
+): Promise<User> => {
   const response = await axios.put<User>(`${API_BASE_URL}/users/${id}`, userData);
   return response.data;
 };

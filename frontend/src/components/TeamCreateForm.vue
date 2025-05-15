@@ -7,13 +7,13 @@
         <input id="name" v-model="form.name" required />
       </div>
       <div>
-		  <!-- 今はオーナーIDをここで指定、ユーザーの管理をしていないため -->
+        <!-- 今はオーナーIDをここで指定、ユーザーの管理をしていないため -->
         <label for="owner_id">オーナーID:</label>
         <input id="owner_id" type="number" v-model.number="form.owner_id" required />
       </div>
       <button type="submit">作成</button>
     </form>
-	<router-link to="/teams">キャンセル</router-link>
+    <router-link to="/teams">キャンセル</router-link>
   </div>
 </template>
 
@@ -33,7 +33,7 @@ const handleSubmit = async () => {
   try {
     const team = await createTeam(form.value);
     alert(`${team.name}を作成しました！`);
-	router.push("/teams");
+    router.push('/teams');
     // form.value.name = '';
     // form.value.owner_id = 1;
   } catch (error) {
