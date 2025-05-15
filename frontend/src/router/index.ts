@@ -6,6 +6,7 @@ import UserEditForm from '@/components/UserEditForm.vue';
 import HelloPage from '@/components/hello.vue';
 import TeamList from '@/components/TeamList.vue'
 import TeamCreateForm from '@/components/TeamCreateForm.vue';
+import TeamDetail from '@/components/TeamDetail.vue';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -34,10 +35,16 @@ const routes: RouteRecordRaw[] = [
     name: 'TeamList',
     component: TeamList,
   },
-    {
+  {
     path: '/teams/new',
     name: 'TeamCreateForm',
     component: TeamCreateForm,
+  },
+  {
+    path: '/teams/:id',
+    name: 'TeamDetail',
+    component: TeamDetail,
+    props: true,
   },
   {
     path: '/',

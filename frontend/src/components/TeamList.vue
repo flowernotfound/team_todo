@@ -10,9 +10,7 @@
       </li>
     </ul>
     <button @click="fetchTeams">更新</button>
-    <router-link to="/teams/new" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
-      新規チーム作成
-    </router-link>
+    <router-link to="/teams/new">新規チーム作成</router-link>
   </div>
 </template>
 
