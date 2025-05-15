@@ -7,6 +7,7 @@
     <p>更新日時：{{ team.updated_at }}</p>
     <router-link :to="`/teams/${team.id}/edit`">編集</router-link>
     <button @click="confirmDelete">削除</button>
+    <router-link :to="`/teams`">チーム一覧に戻る</router-link>
   </div>
   <div v-else>
     <p>読み込み中...</p>
