@@ -18,6 +18,16 @@ class Api::TeamsController < ApplicationController
 		render json: team.slice(:id, :name, :owner_id, :created_at, :updated_at)
 	end
 
+	def destroy
+		team = Team.find_by(id: params[:id])
+		if team
+			team.destroy
+			head :no_content
+		else
+			render json: { error: "Team not found" }, status: :not_found
+		end
+	end
+
 	private
 
 	def team_params
