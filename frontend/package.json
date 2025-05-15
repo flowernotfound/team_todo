@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
-    "lint": "eslint . --fix",
+    "lint": "eslint . --ext .ts,.vue",
+    "lint:fix": "eslint . --ext .ts,.vue --fix",
+    "lint:check": "eslint . --ext .ts,.vue --max-warnings=0",
     "format": "prettier --write src/"
   },
   "dependencies": {
