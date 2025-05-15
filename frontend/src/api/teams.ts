@@ -26,3 +26,7 @@ export const getTeamDetail = async (id: number): Promise<Team> => {
   const response = await axios.get<Team>(`${API_BASE_URL}/teams/${id}`);
   return response.data;
 };
+
+export const deleteTeam = async (id: number): Promise<void> => {
+  await axios.delete(`${API_BASE_URL}/teams/${id}`);
+};

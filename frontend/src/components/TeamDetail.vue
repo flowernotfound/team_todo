@@ -17,6 +17,7 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getTeamDetail } from '@/api/teams';
+import { deleteTeam } from '@/api/teams';
 import type { Team } from '@/api/teams';
 
 const route = useRoute();
@@ -32,12 +33,17 @@ const fetchTeam = async () => {
   }
 };
 
-const confirmDelete = () => {
+const confirmDelete = async () => {
   const result = confirm('本当に削除しますか？');
-  if (result) {
-    alert('削除が完了しました てきな');
-    // TODO: delete用のAPIとそれ呼び出すやつ実装
-    // そんで一覧に遷移
+  if (result && team.value) {
+    try {
+      await deleteTeam(team.value.id);
+      alert('削除が完了しました');
+      router.push('/teams');
+    } catch (error) {
+      console.error(error);
+      alert('削除に失敗しました');
+    }
   }
 };
 
