@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+    title: チーム関連API
+    version: 1.0.0
+    description: |
+        teamに関するエンドポイントです。
+
+        - チーム一覧取得（GET /api/teams）
+        - チーム作成（POST /api/teams）
+        - チーム詳細取得（GET /api/teams/:id）
+        - チーム削除（DELETE /api/teams/:id）
+
+paths:
+    /api/teams:
+        get:
+            summary: チーム一覧取得
+            description: 登録されている全チームの基本情報を一覧で取得します。
+            responses:
+                "200":
+                    description: 成功時のレスポンス
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: integer
+                                            example: 3
+                                            description: チームID
+                                        name:
+                                            type: string
+                                            example: team_hashimoto
+                                            description: チーム名
+                                        owner_id:
+                                            type: integer
+                                            example: 1
+                                            description: オーナーID
+                            example:
+                                - id: 3
+                                  name: team_hashimoto
+                                  owner_id: 3
+                                - id: 10
+                                  name: test_team
+                                  owner_id: 1
+                "400":
+                    description: 不正なリクエスト
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            example:
+                                message: パラメータが不正です。
+
+        post:
+            summary: チーム作成
+            description: 新しいチームを作成します。
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    description: チーム名
+                            required:
+                                - name
+            responses:
+                "201":
+                    description: 作成成功
+                "400":
+                    description: 不正なリクエスト
+
+    /api/teams/{id}:
+        get:
+            summary: チーム詳細取得
+            description: 指定されたIDのチーム情報を取得します。
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                      type: integer
+                  description: チームID
+            responses:
+                "200":
+                    description: 正常に取得されました
+                "404":
+                    description: チームが見つかりません
+
+        delete:
+            summary: チーム削除
+            description: 指定されたIDのチームを削除します。
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  schema:
+                      type: integer
+                  description: チームID
+            responses:
+                "204":
+                    description: 削除成功（レスポンスなし）
+                "404":
+                    description: チームが見つかりません
