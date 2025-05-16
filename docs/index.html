@@ -21,6 +21,9 @@
                 color: #0070f3;
                 font-weight: bold;
             }
+            #welcome {
+                padding: 2rem;
+            }
         </style>
     </head>
     <body>
@@ -29,16 +32,23 @@
             <a href="?doc=teams.yml">チーム系API</a>
             <a href="?doc=tasks.yml">タスク系API</a>
         </nav>
-        <div id="redoc-container"></div>
+        <div id="welcome">
+            <h1>ようこそ 👋</h1>
+            <p>表示したいAPIドキュメントを上のリンクから選んでください。</p>
+        </div>
+        <div id="redoc-container" style="display: none"></div>
         <script>
-            const doc =
-                new URLSearchParams(window.location.search).get("doc") ||
-                "template.yml";
-            Redoc.init(
-                `API/${doc}`,
-                {},
-                document.getElementById("redoc-container")
-            );
+            const doc = new URLSearchParams(window.location.search).get("doc");
+            if (doc) {
+                document.getElementById("welcome").style.display = "none";
+                document.getElementById("redoc-container").style.display =
+                    "block";
+                Redoc.init(
+                    `API/${doc}`,
+                    {},
+                    document.getElementById("redoc-container")
+                );
+            }
         </script>
     </body>
 </html>
