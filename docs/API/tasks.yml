@@ -3,19 +3,19 @@ info:
     title: ○○関連API
     version: 1.0.0
     description: |
-        このファイルでは ○○（例：ユーザー・タスク）に関するAPIエンドポイントをまとめています。
+        taskに関するエンドポイントです。
 
-        - 一覧取得（GET /api/○○s）
+        - 一覧取得（GET /api/teams/:id/tasks）
         - 作成（POST /api/○○s）
         - 詳細取得（GET /api/○○s/:id）
         - 更新（PUT /api/○○s/:id, PATCH /api/○○s/:id）
         - 削除（DELETE /api/○○s/:id）
 
 paths:
-    /api/○○s:
+    /api/teams/:id/tasks:
         get:
-            summary: ○○一覧取得
-            description: 登録されているすべての○○の情報を取得します。
+            summary: タスク一覧取得
+            description: チームに登録されているタスクの一覧を取得します。
             responses:
                 "200":
                     description: 成功時のレスポンス
