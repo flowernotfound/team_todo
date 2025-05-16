@@ -1,15 +1,15 @@
 openapi: 3.0.3
 info:
-    title: ○○関連API
+    title: タスク関連API
     version: 1.0.0
     description: |
         taskに関するエンドポイントです。
 
-        - 一覧取得（GET /api/teams/:id/tasks）
-        - 作成（POST /api/○○s）
-        - 詳細取得（GET /api/○○s/:id）
-        - 更新（PUT /api/○○s/:id, PATCH /api/○○s/:id）
-        - 削除（DELETE /api/○○s/:id）
+        - タスク一覧取得（GET /api/teams/:team_id/tasks）
+        - タスク作成（POST /api/teams/:team_id/tasks）
+        - タスク詳細取得（GET /api/○○s/:id）
+        - タスク更新（PUT /api/○○s/:id, PATCH /api/○○s/:id）
+        - タスク削除（DELETE /api/teams/:team_id/tasks/:id）
 
 paths:
     /api/teams/:id/tasks:
@@ -140,8 +140,8 @@ paths:
                     description: 該当する○○が見つかりません
 
         delete:
-            summary: ○○削除
-            description: 指定された○○IDのデータを削除します。
+            summary: タスク削除
+            description: 指定されたIDのタスクを削除します。
             parameters:
                 - name: id
                   in: path
