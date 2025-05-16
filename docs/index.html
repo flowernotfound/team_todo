@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>APIドキュメント一覧</title>
+        <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+        <style>
+            body {
+                margin: 0;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                    Roboto, "Helvetica Neue", Arial, sans-serif;
+            }
+            nav {
+                padding: 1rem;
+                background: #f8f8f8;
+                border-bottom: 1px solid #ccc;
+            }
+            nav a {
+                margin-right: 1rem;
+                text-decoration: none;
+                color: #0070f3;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <strong>API一覧:</strong>
+            <a href="?doc=template.yml">テンプレート</a>
+            <a href="?doc=teams_get.yml">チーム一覧</a>
+        </nav>
+        <div id="redoc-container"></div>
+        <script>
+            const doc =
+                new URLSearchParams(window.location.search).get("doc") ||
+                "template.yml";
+            Redoc.init(
+                `API/${doc}`,
+                {},
+                document.getElementById("redoc-container")
+            );
+        </script>
+    </body>
+</html>

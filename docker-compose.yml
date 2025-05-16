@@ -44,7 +44,14 @@ services:
         volumes:
             - ./docs/API:/usr/share/nginx/html/swagger
         environment:
-            SWAGGER_JSON: /usr/share/nginx/html/swagger/template.yml
+            SWAGGER_JSON: /usr/share/nginx/html/swagger/teams_get.yml
+    redoc:
+        image: nginx:alpine
+        container_name: redoc_ui_container
+        ports:
+            - "8081:80"
+        volumes:
+            - ./docs:/usr/share/nginx/html
 
 volumes:
     db-data:
