@@ -1,40 +1,50 @@
 services:
-  db:
-    image: mysql:8.0
-    container_name: mysql_container
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: backend_development
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-data:/var/lib/mysql
+    db:
+        image: mysql:8.0
+        container_name: mysql_container
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: backend_development
+        ports:
+            - "3306:3306"
+        volumes:
+            - db-data:/var/lib/mysql
 
-  backend:
-    build: ./backend
-    container_name: rails_container
-    depends_on:
-      - db
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./backend:/app
-    environment:
-      DATABASE_HOST: db
-      DATABASE_USERNAME: root
-      DATABASE_PASSWORD: password
+    backend:
+        build: ./backend
+        container_name: rails_container
+        depends_on:
+            - db
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./backend:/app
+        environment:
+            DATABASE_HOST: db
+            DATABASE_USERNAME: root
+            DATABASE_PASSWORD: password
 
-  frontend:
-    build: ./frontend
-    container_name: vue_container
-    depends_on:
-      - backend
-    ports:
-      - "3001:3001"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
+    frontend:
+        build: ./frontend
+        container_name: vue_container
+        depends_on:
+            - backend
+        ports:
+            - "3001:3001"
+        volumes:
+            - ./frontend:/app
+            - /app/node_modules
+
+    swagger-ui:
+        image: swaggerapi/swagger-ui
+        container_name: swagger_ui_container
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./docs/API:/usr/share/nginx/html/swagger
+        environment:
+            SWAGGER_JSON: /usr/share/nginx/html/swagger/template.yml
 
 volumes:
-  db-data:
+    db-data:

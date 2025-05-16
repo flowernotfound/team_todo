@@ -1,0 +1,104 @@
+# テーブルの形で描画しているところは要検討
+# なんかコピペしにくそう
+
+openapi: 3.0.3
+info:
+    title: API名をここに記述
+    version: 1.0.0
+    description: |
+        ## 基本情報
+
+        - API論理名：[例：ユーザー一覧取得]
+        - エンドポイント：[例：http://localhost:3000/api/users]
+        - メソッド：[GET / POST / PUT / DELETEなど]
+        - 概要：[このAPIが何をするものか、簡潔に記述]
+
+        ## リクエスト
+
+        - クエリパラメータ：
+          [なし または 下記のような表]
+
+          | パラメータ名 | 型     | 必須 | 説明             |
+          |--------------|--------|------|------------------|
+          | limit        | number | 任意 | 取得件数の上限   |
+
+        - リクエストボディ：
+          [なし または 下記のような表]
+
+          | パラメータ名 | 型     | 必須 | 説明         |
+          |--------------|--------|------|--------------|
+          | name         | string | 必須 | ユーザー名   |
+
+        - リクエストサンプル：
+          [例：http://localhost:3000/api/users?limit=10]
+
+        ## レスポンス
+
+        - 成功時（200 OK）：
+
+          | パラメータ名 | 型     | 説明         |
+          |--------------|--------|--------------|
+          | id           | int    | ユーザーID   |
+          | name         | string | ユーザー名   |
+
+        - レスポンスサンプル：
+
+          ```json
+          [
+            {
+              "id": 1,
+              "name": "Taro"
+            }
+          ]
+          ```
+
+        ## エラーハンドリング
+
+        | ステータスコード | 説明             | エラーメッセージ例            |
+        |------------------|------------------|-------------------------------|
+        | 400              | 不正なリクエスト | パラメータが不正です。       |
+        | 401              | 未認証           | トークンが無効です。         |
+
+        ## 備考
+
+        - 認証要件：[例：Bearerトークンが必要]
+        - レート制限：[例：1秒あたり5リクエストまで]
+        - その他注意事項：[例：管理者のみ使用可能]
+
+paths:
+    /api/placeholder:
+        get: #メソッドは適宜変える
+            summary: APIの概要（タイトル）
+            description: このAPIの機能を簡単に記述
+            responses:
+                "200":
+                    description: 成功時のレスポンス
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: integer
+                                            description: ID
+                                            example: 1
+                                        name:
+                                            type: string
+                                            description: 名前
+                                            example: Taro
+                            example:
+                                - id: 1
+                                  name: Taro
+                "400":
+                    description: 不正なリクエスト
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            example:
+                                message: パラメータが不正です。
